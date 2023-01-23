@@ -7,6 +7,7 @@
 // document.body.appendChild(questionContainer)
 let points = 0;
 
+//Defined set of questions
 const questions = [
     {
         question: "What do you use to create a multi-line comment?",
