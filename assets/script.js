@@ -6,14 +6,16 @@
 
 // document.body.appendChild(questionContainer)
 let points = 0;
-
 const start = document.getElementById("start");
-
 const questionText = document.getElementById("question-text");
-
+const choicesText = document.getElementById("choices");
 const description = document.getElementById("description");
+let singleQuestion = 0;
+let singleChoice = 0;
+var secondsleft = 100;
+const incorrectAnswer = 10;
 
-let singleQuestion = 0
+
 //Defined set of questions
 const questions = [
     {
@@ -106,5 +108,8 @@ document.querySelector("#submitScore").addEventListener("click", function (event
 function render() {
     questionText.textContent = questions[singleQuestion].question;
     singleQuestion++;
+    choicesText.textContent = choices[singleChoice].choices;
+    singleChoice++;
+
 }
 
