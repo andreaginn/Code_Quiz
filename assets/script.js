@@ -7,6 +7,13 @@
 // document.body.appendChild(questionContainer)
 let points = 0;
 
+const start = document.getElementById("start");
+
+const questionText = document.getElementById("question-text");
+
+const description = document.getElementById("description");
+
+let singleQuestion = 0
 //Defined set of questions
 const questions = [
     {
@@ -27,7 +34,7 @@ const questions = [
     {
         question: "How would you round down a random number generator from a decimal result?",
         choices: [".random", ".ceil", ".rounddown", ".floor"],
-        answer: "floor"
+        answer: ".floor"
     },
     {
         question: "Which is not an acceptable variable declaration?",
@@ -69,14 +76,20 @@ const questions = [
 //     questionTextArea.innerText = questions[currentQuestion].question
 // })
 
-document.querySelector("#questionTextArea").addEventListener("click", function (event) {
-    if (event.target.innerText === questions[currentQuestion].answer) {
-        points++
-    }
-})
 
-const startQuiz = function (event) {
 
+//document.querySelector("#questionTextArea").addEventListener("click", function (event) {
+//if (event.target.innerText === questions[currentQuestion].answer) {
+//  points++
+/// }
+//})
+
+start.addEventListener("click", startQuiz);
+
+function startQuiz() {
+    description.className = "hidden";
+    questionText.className = "shown";
+    render();
 }
 
 
@@ -88,3 +101,10 @@ document.querySelector("#submitScore").addEventListener("click", function (event
     //for loop over the playerList, using the notation at the top of this document to dynamically create a table with score and name columns
     localStorage.setItem("highscores", JSON.stringify(playerList))
 })
+
+
+function render() {
+    questionText.textContent = questions[singleQuestion].question;
+    singleQuestion++;
+}
+

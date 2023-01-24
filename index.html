@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>JavaScript Quiz</title>
@@ -8,20 +9,23 @@
 
 <body>
     <div class="top">
-        <a href="#" id="viewHighScore">View High Scores</a> 
+        <a href="#" id="viewHighScore">View High Scores</a>
         <p>Time Remaining: <span id="timeLeft">0</span></p>
-       
+
     </div>
     <h2>JavaScript Quiz</h2>
-    <h5>This is a short, timed quiz about JavaScript basics!<br>
-    There are 10 questions total and a timer start of 100 seconds.<br>
-    For each incorrect answer, 10 seconds will be docked.<br>
-    When each question is answered or the clock reaches 9, the game is finished!</h5>
-    <div id="questionText" class="hidden"></div>
+    <div id="description">
+        <h5>This is a short, timed quiz about JavaScript basics!<br>
+            There are 10 questions total and a timer start of 100 seconds.<br>
+            For each incorrect answer, 10 seconds will be docked.<br>
+            When each question is answered or the clock reaches 9, the game is finished!</h5>
+    </div>
+    <div id="question-text" class="hidden"></div>
     <div id="choices" class="hidden">
     </div>
+    <div id="centeredbutton">
     <button id="start">Start</button>
+</div>
 
-    
-<script src="./assets/script.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
