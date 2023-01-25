@@ -6,10 +6,10 @@ const answersEl = document.querySelector("#answer-options");
 const addScoreEl = document.querySelector("#addScore");
 const initialsEl = document.querySelector("#initials");
 const submitInitialsButtonEl = document.querySelector("#submitInitials");
-const finalScore = document.querySelector("#score");
+const finalScoreEl = document.querySelector("#score");
 const highScoresEl = document.querySelector("#highScores");
 const scoresEl = document.querySelector("#individual-scores");
-const restartQuizButton = document.querySelector("#restart");
+const restartQuizButtonEl = document.querySelector("#restart");
 const viewHighScoresButtonEl = document.querySelector("#view-high-scores");
 const timerEl = document.querySelector("#timer");
 const questions = [
@@ -79,6 +79,26 @@ function startTimer() {
         timerEl.textContent = timeAllowed - secondsElapsed;
         if (secondsElapsed >= timeAllowed) {
             currentQuestion = questions.length;
+            nextQuestion();
         }
-    })
+    }, 1000);
+}
+
+function endTime() {
+    clearInterval(interval);
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        renderQuestion();
+    } else {
+        endTime();
+        if ((timeAllowed - secondsElapsed) > 0)
+        score += (timeAllowed - secondsElapsed);
+        finalScoreEl.textContent = score;
+        hide(quizEl);
+        show(addScoreEl);
+        timerEl.textContent = 0;
+    }
 }
