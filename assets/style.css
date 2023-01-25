@@ -1,0 +1,16 @@
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
+
+#quiz, #addScore, #highScores {
+    display: none;
+}
+
+#quiz {
+    background-color: rgb(140, 239, 152);
+}
+
+body {
+    background-color: rgb(249, 196, 242);
+}
