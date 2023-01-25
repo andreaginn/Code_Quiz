@@ -9,7 +9,7 @@
 
 <body>
     <div class="top">
-        <div id="View High Scores">View High Scores</div>
+        <div id="view-high-scores">View High Scores</div>
         <div id="time-count">Time: <span id="timer">0</span></div>
     </div>
     <div class="main-container">
@@ -19,15 +19,17 @@
                 There are 10 questions total and a timer start of 100 seconds.<br>
                 For each incorrect answer, 10 seconds will be docked.<br>
                 When each question is answered or the clock reaches 0, the game is finished!</p>
-            <button id="Start Quiz">Start Quiz</button>
+            <button id="start quiz">Start Quiz</button>
         </div>
     </div>
     <div class="container" id="quiz">
         <h2 id="question"></h2>
-        <div><button id=option1></button></div>
-        <div><button id=option2></button></div>
-        <div><button id=option3></button></div>
-        <div><button id=option4></button></div>
+        <div id="answer-options">
+            <div><button id=option1></button></div>
+            <div><button id=option2></button></div>
+            <div><button id=option3></button></div>
+            <div><button id=option4></button></div>
+        </div>
     </div>
     <div class="container" id="addScore">
         <p>Your score: <span id="score"></span></p>
@@ -36,7 +38,7 @@
     </div>
     <div class="container" id="highScores">
         <h1>High Scores</h1>
-        <div class="container" id="individual Scores">
+        <div class="container" id="individual-scores">
         </div>
         <button id="restart">Restart Quiz</button>
     </div>
