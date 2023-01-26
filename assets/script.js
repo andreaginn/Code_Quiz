@@ -2,12 +2,12 @@ const mainDescriptionEl = document.querySelector("#main-description");
 const startQuizEl = document.querySelector("#start-quiz");
 const quizEl = document.querySelector("#quiz");
 const questionEl = document.querySelector("#question");
-const answersEl = document.querySelector("#answer-options");
-const addScoreEl = document.querySelector("#addScore");
+const answerOptionsEl = document.querySelector("#answer-options");
+const addScoreEl = document.querySelector("#add-score");
 const initialsEl = document.querySelector("#initials");
-const submitInitialsButtonEl = document.querySelector("#submitInitials");
+const submitInitialsButtonEl = document.querySelector("#submit-initials");
 const finalScoreEl = document.querySelector("#score");
-const highScoresEl = document.querySelector("#highScores");
+const highScoresEl = document.querySelector("#high-scores");
 const scoresEl = document.querySelector("#individual-scores");
 const restartQuizButtonEl = document.querySelector("#restart");
 const viewHighScoresButtonEl = document.querySelector("#view-high-scores");
@@ -60,8 +60,8 @@ const questions = [
     },
     {
         question: "How do you write an if statement?",
-        choices: ["if i = 10", "if i == 10 then", "if (i == 10", "none of the above"],
-        answer: "if (i == 10"
+        choices: ["if i = 10", "if i == 10 then", "if (i == 10)", "none of the above"],
+        answer: "if (i == 10)"
     },
 ]
 var score = 0;
@@ -71,7 +71,7 @@ var interval;
 var timeAllowed = 100;
 var secondsElapsed = 0;
 
-//for timer
+
 function startTimer() {
     timerEl.textContent = timeAllowed;
     interval = setInterval(function () {
@@ -105,7 +105,7 @@ function nextQuestion() {
 
 function verifyAnswer(answer) {
     if (questions[currentQuestion].answer == questions[currentQuestion].choices[answer.id]) {
-        score += 5;
+        score += 1;
         displayMessage("Correct");
     } else {
         secondsElapsed += 10;
@@ -138,8 +138,8 @@ function reset() {
 
 function renderQuestion() {
     questionEl.textContent = questions[currentQuestion].title;
-    for (i = 0; i < answersEl.children.length; i++) {
-        answersEl.children[i].children[0].textContent = `${questions[currentQuestion], choices[i]}`;
+    for (i = 0; i < answerOptionsEl.children.length; i++) {
+        answerOptionsEl.children[i].children[0].textContent = `${questions[currentQuestion], choices[i]}`;
     }
 }
 
@@ -173,3 +173,27 @@ startQuizEl.addEventListener("click", function () {
     show(quizEl);
 });
 
+answerOptionsEl.addEventListener("click", function (e) {
+    if (e.target.matches("button")) {
+        verifyAnswer(e.target);
+        nextQuestion();
+    }
+});
+
+submitInitialsButtonEl.addEventListener("click", function () {
+    let initValue = initialsEl.value.trim();
+    if (initValue) {
+        let finalScore = { username: initValue, finalScore: score };
+        initialsEl.value = '';
+        highScores.push(finalScore)
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        hide(addScoreEl);
+        renderHighScores();
+        reset();
+    }
+});
+
+restartQuizButtonEl.addEventListener("click", function () {
+    hide(highScoresEl);
+    show(mainDescriptionEl);
+});
