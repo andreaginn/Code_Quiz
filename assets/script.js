@@ -105,11 +105,71 @@ function nextQuestion() {
 
 function verifyAnswer(answer) {
     if (questions[currentQuestion].answer == questions[currentQuestion].choices[answer.id]) {
-        score +=5;
+        score += 5;
         displayMessage("Correct");
     } else {
         secondsElapsed += 10;
         displayMessage("Incorrect");
     }
 }
+
+function displayMessage(m) {
+    let messageHr = document.createElement("hr");
+    let messageEl = document.createElement("div");
+    messageEl.textContent = m;
+    document.querySelector(".main-container").appendChild(messageHr);
+    document.querySelector(".main-container").appendChild(messageEl);
+    setTimeout(function () {
+        messageHr.remove();
+        messageEl.remove();
+    }, 2000);
+}
+
+function hide(element) {
+    element.style.display = "block";
+}
+
+function reset() {
+    score = 0;
+    currentQuestion = 0;
+    secondsElapsed = 0;
+    timerEl.textContent = 0;
+}
+
+function renderQuestion() {
+    questionEl.textContent = questions[currentQuestion].title;
+    for (i = 0; i < answersEl.children.length; i++) {
+        answersEl.children[i].children[0].textContent = `${questions[currentQuestion], choices[i]}`;
+    }
+}
+
+function renderHighScores() {
+    scoresEl.innerHTML = "";
+    show(highScoresEl);
+    highScores = JSON.parse(localStorage.getItem("scores"));
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreItem = document.createElement("div");
+        scoreItem.className += "row mb-3 p-2";
+        console.log(scoreItem)
+        scoreItem.setAttribute("style", "background-color:red;");
+        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].finalScore}`;
+        scoresEl.appendChild(scoreItem);
+    }
+}
+
+viewHighScoresButtonEl.addEventListener("click", function () {
+    hide(mainDescriptionEl);
+    hide(quizEl);
+    hide(addScoreEl);
+    renderHighScores();
+    endTime();
+    reset();
+});
+
+startQuizEl.addEventListener("click", function () {
+    hide(mainDescriptionEl);
+    startTimer();
+    renderQuestion();
+    show(quizEl);
+});
 
