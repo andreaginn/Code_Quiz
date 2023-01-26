@@ -95,10 +95,21 @@ function nextQuestion() {
     } else {
         endTime();
         if ((timeAllowed - secondsElapsed) > 0)
-        score += (timeAllowed - secondsElapsed);
+            score += (timeAllowed - secondsElapsed);
         finalScoreEl.textContent = score;
         hide(quizEl);
         show(addScoreEl);
         timerEl.textContent = 0;
     }
 }
+
+function verifyAnswer(answer) {
+    if (questions[currentQuestion].answer == questions[currentQuestion].choices[answer.id]) {
+        score +=5;
+        displayMessage("Correct");
+    } else {
+        secondsElapsed += 10;
+        displayMessage("Incorrect");
+    }
+}
+
