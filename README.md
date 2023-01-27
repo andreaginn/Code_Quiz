@@ -6,6 +6,7 @@ A timed, scored 10-question quiz on JavaScript basics. Docks the user 10 seconds
 
 ## Installation
 
-Site deployed. URL: 
+Site deployed. URL: https://andreaginn.github.io/Code_Quiz/
 
-![my image](.jpg)
+![screenshot1](jscodequiz1.jpg)
+![screenshot2](jscodequiz2.jpg)
