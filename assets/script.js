@@ -71,6 +71,9 @@ var interval;
 var timeAllowed = 100;
 var secondsElapsed = 0;
 
+hide(addScoreEl)
+hide(highScoresEl)
+
 
 function startTimer() {
     timerEl.textContent = timeAllowed;
@@ -126,6 +129,10 @@ function displayMessage(m) {
 }
 
 function hide(element) {
+    element.style.display = "none";
+}
+
+function show(element) {
     element.style.display = "block";
 }
 
@@ -137,9 +144,12 @@ function reset() {
 }
 
 function renderQuestion() {
-    questionEl.textContent = questions[currentQuestion].title;
-    for (i = 0; i < answerOptionsEl.children.length; i++) {
-        answerOptionsEl.children[i].children[0].textContent = `${questions[currentQuestion], choices[i]}`;
+    show(quizEl);
+    console.log("render question function", quizEl);
+    questionEl.textContent = questions[currentQuestion].question;
+    console.log(questions[currentQuestion].question);
+    for (let i = 0; i < answerOptionsEl.children.length; i++) {
+        answerOptionsEl.children[i].children[0].textContent = `${questions[currentQuestion].choices[i]}`;
     }
 }
 
